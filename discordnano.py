@@ -29,12 +29,14 @@ def update_rich_presence(RPC):
                 last_filename = current_filename
                 last_state = current_state
 
-            RPC.update(details=current_state, state=current_filename, large_image="logosvg", start=start_time)
+            RPC.update(details=current_state, state=current_filename, large_image="logosvg", start=start_time,
+                       buttons=[{"label": "View the code on GitHub", "url": "https://github.com/cmdada/Discord-Nano-Integration"}])
         else:
             if last_state != "Not using nano":  # Check if the state has changed
                 start_time = time.time()
             last_state = "Not using nano"
-            RPC.update(details='Not using nano', state='', large_image="logosvg", start=start_time)
+            RPC.update(details='Not using nano', state='', large_image="logosvg", start=start_time,
+                       buttons=[{"label": "View the code on GitHub", "url": "https://github.com/cmdada/Discord-Nano-Integration"}])
       
         time.sleep(.1)
 
