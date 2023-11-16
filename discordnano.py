@@ -10,20 +10,33 @@ def setup_rich_presence(client_id):
     return RPC
 
 def update_rich_presence(RPC):
+    start_time = time.time()
+    last_filename = None
+    last_state = "Not using nano"
     while True:
         nano_process = [p.info for p in psutil.process_iter(['name', 'cmdline']) if 'nano' in p.info['name']]
         if nano_process:  # Check if nano is running
             cmdline = nano_process[0].get('cmdline', [])
-            if len(cmdline) > 1:  # If there is more than one argument, we should have a file name.
+            current_state = 'Idle in nano'
+            current_filename = ''
+            if len(cmdline) > 1:  # If there is a file name.
                 file_path = cmdline[1]  # Second element should be the file path.
-                filename = os.path.basename(file_path)  # Get the base name as the file name.
-                RPC.update(details='Editing a file', state=filename)
-            else:
-                RPC.update(details='Idle in nano', state='')
-        else:
-            RPC.update(details='Not using nano', state='')
+                current_filename = os.path.basename(file_path)  # Get the base name as the file name.
+                current_state = 'Editing a file'
+                
+            if current_filename != last_filename or current_state != last_state:
+                start_time = time.time()
+                last_filename = current_filename
+                last_state = current_state
 
-        time.sleep(.1)  # Discord only allows updates every 15 seconds.
+            RPC.update(details=current_state, state=current_filename, large_image="logosvg", start=start_time)
+        else:
+            if last_state != "Not using nano":  # Check if the state has changed
+                start_time = time.time()
+            last_state = "Not using nano"
+            RPC.update(details='Not using nano', state='', large_image="logosvg", start=start_time)
+      
+        time.sleep(.1)
 
 if __name__ == '__main__':
     client_id = '1174605779513389096'
