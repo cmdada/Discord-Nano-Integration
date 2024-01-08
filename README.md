@@ -1,6 +1,15 @@
-# Discord-Nano-Integration
-Simple integration for gnu nano with discord (on linux)
+## Discord-Nano-Integration
 
--to start the systemd service, put the script in ~/code/Discord-Nano-Integration/discordnano.py, and put the systemd service in ~/.config/systemd/user/discordnano.service and run 'systemctl --user enable discordnano.service --now'
+Discord-Nano-Integration is a simple solution for seamlessly integrating GNU Nano with Discord on Linux for a smoother user experience.
 
--by default configured to use micro cause you should be if this is something that'll help you but if you really want to edit line 17 in the script
+## Usage Instructions
+1. Start the systemd service by following these steps:
+   - Place the script in `~/code/Discord-Nano-Integration/discordnano.py`
+   - Move the systemd service file to `~/.config/systemd/user/discordnano.service`
+   - Run: `systemctl --user enable discordnano.service --now`
+
+2. Default Configuration:
+   - The integration is configured to use Micro by default for an optimal experience. Feel free to keep this configuration unless you realllllly want to use nano.
+
+3. Customization:
+   - to use nano instead of micro go to line 17 in the script and change micro to nano.
