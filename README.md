@@ -1,6 +1,6 @@
 ## Discord-Nano-Integration
 
-Discord-Nano-Integration is a solution for integrating GNU Nano with Discord on Linux cause its a full blown ide :3.
+Discord-Nano-Integration is a(the) solution for integrating GNU Nano with Discord on Linux cause its a full blown ide :3.
 
 ## Usage Instructions
 1. Start the systemd service:
