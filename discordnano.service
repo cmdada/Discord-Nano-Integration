@@ -1,8 +1,10 @@
 [Unit]
 Description=discord
+StartLimitIntervalSec=1
 [Service]
 Type=simple
-TimeoutStartSec=0
-ExecStart=python3 ~/discordnano.py
+TimeoutStartSec=40
+ExecStart=python3 code/Discord-Nano-Integration/discordnano.py
+Restart=on-failure
 [Install]
 WantedBy=default.target

@@ -14,7 +14,7 @@ def update_rich_presence(RPC):
     last_filename = None
     last_state = "Not using nano"
     while True:
-        nano_process = [p.info for p in psutil.process_iter(['name', 'cmdline']) if 'nano' in p.info['name']]
+        nano_process = [p.info for p in psutil.process_iter(['name', 'cmdline']) if 'micro' in p.info['name']]
         if nano_process:  # Check if nano is running
             cmdline = nano_process[0].get('cmdline', [])
             current_state = 'Idle in nano'
@@ -35,7 +35,7 @@ def update_rich_presence(RPC):
             if last_state != "Not using nano":  # Check if the state has changed
                 start_time = time.time()
             last_state = "Not using nano"
-            RPC.update(details='Not using nano', state='', large_image="logosvg", start=start_time,
+            RPC.update(details='Not using nano', large_image="logosvg", start=start_time,
                        buttons=[{"label": "View the code on GitHub", "url": "https://github.com/cmdada/Discord-Nano-Integration"}])
       
         time.sleep(.1)
